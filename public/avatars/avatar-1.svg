@@ -1,0 +1,19 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradient Background -->
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00C896;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00A07A;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <circle cx="50" cy="50" r="50" fill="url(#grad1)"/>
+  <!-- Face -->
+  <circle cx="50" cy="38" r="18" fill="#FFFFFF"/>
+  <!-- Eyes -->
+  <circle cx="44" cy="36" r="2" fill="#00A07A"/>
+  <circle cx="56" cy="36" r="2" fill="#00A07A"/>
+  <!-- Smile -->
+  <path d="M 44 42 Q 50 45 56 42" stroke="#00A07A" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Body -->
+  <path d="M 22 75 Q 22 58 50 58 Q 78 58 78 75 Z" fill="#FFFFFF"/>
+</svg>

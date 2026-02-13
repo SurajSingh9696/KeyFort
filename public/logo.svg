@@ -1,0 +1,65 @@
+<svg width="560" height="170" viewBox="0 0 560 170" xmlns="http://www.w3.org/2000/svg">
+
+  <defs>
+    <!-- Fortress Gradient -->
+    <linearGradient id="fortGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00C896"/>
+      <stop offset="100%" stop-color="#00F5FF"/>
+    </linearGradient>
+
+    <!-- Text Gradient -->
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E6F1FF"/>
+      <stop offset="100%" stop-color="#9CA3AF"/>
+    </linearGradient>
+
+    <!-- Soft Glow -->
+    <filter id="glow">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="560" height="170" rx="20" fill="#0B1F3A"/>
+
+  <!-- Shield -->
+  <path d="M90 30
+           Q140 45 160 70
+           Q160 120 90 150
+           Q20 120 20 70
+           Q40 45 90 30Z"
+        fill="#1C1F26"
+        stroke="url(#fortGradient)"
+        stroke-width="4"
+        filter="url(#glow)"/>
+
+  <!-- Key Head -->
+  <circle cx="90" cy="85" r="22"
+          stroke="url(#fortGradient)"
+          stroke-width="5"
+          fill="none"/>
+
+  <!-- Key Stem -->
+  <rect x="110" y="80" width="45" height="10"
+        rx="3"
+        fill="url(#fortGradient)"/>
+
+  <!-- Key Teeth -->
+  <rect x="145" y="80" width="8" height="18"
+        rx="2"
+        fill="url(#fortGradient)"/>
+  <rect x="158" y="80" width="8" height="14"
+        rx="2"
+        fill="url(#fortGradient)"/>
+
+  <!-- Text -->
+  <text x="210" y="105"
+        font-family="Segoe UI, Arial, sans-serif"
+        font-size="52"
+        font-weight="700"
+        fill="url(#textGradient)"
+        letter-spacing="2">
+        KeyFort
+  </text>
+
+</svg>

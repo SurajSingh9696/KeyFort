@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 100% 98%;
+    --foreground: 210 40% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 40% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 40% 15%;
+    --primary: 169 100% 39%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 210 40% 20%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 210 20% 45%;
+    --accent: 189 100% 50%;
+    --accent-foreground: 210 40% 15%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 169 100% 39%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 215 33% 9%;
+    --foreground: 210 100% 95%;
+    --card: 216 28% 13%;
+    --card-foreground: 210 100% 95%;
+    --popover: 216 28% 13%;
+    --popover-foreground: 210 100% 95%;
+    --primary: 169 100% 39%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 216 20% 18%;
+    --secondary-foreground: 210 100% 95%;
+    --muted: 216 20% 18%;
+    --muted-foreground: 210 30% 65%;
+    --accent: 189 100% 50%;
+    --accent-foreground: 210 100% 95%;
+    --destructive: 0 62% 48%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 216 28% 20%;
+    --input: 216 28% 20%;
+    --ring: 189 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-poppins), var(--font-inter), system-ui, sans-serif;
+    transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s ease-in-out;
+  }
+  
+  body:not(.dark) {
+    background: linear-gradient(135deg, #E6F1FF 0%, #f0f9ff 100%);
+  }
+
+  .dark body {
+    background: linear-gradient(135deg, #0B1F3A 0%, #1C1F26 100%);
+  }
+
+  code,
+  pre,
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-emerald-400 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-emerald-500;
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-thumb {
+  @apply bg-cyan-500/50 rounded-full;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  @apply bg-cyan-400;
+}
+
+/* Glassmorphism effect */
+.glass {
+  background: rgba(230, 241, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 245, 255, 0.1);
+}
+
+.dark .glass {
+  background: rgba(28, 31, 38, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 245, 255, 0.15);
+}
+
+/* Auth layout */
+.auth-shell {
+  background:
+    radial-gradient(700px 500px at 15% 10%, rgba(0, 200, 150, 0.15), transparent 60%),
+    radial-gradient(800px 500px at 85% 0%, rgba(0, 245, 255, 0.12), transparent 55%),
+    linear-gradient(135deg, rgba(11, 31, 58, 0.98), rgba(28, 31, 38, 0.98));
+}
+
+.auth-card {
+  box-shadow: 0 30px 80px -40px rgba(0, 0, 0, 0.8),
+              0 0 0 1px rgba(0, 245, 255, 0.2);
+}
+
+/* App layout helpers */
+.app-shell {
+  background:
+    radial-gradient(900px 500px at 0% 0%, rgba(0, 200, 150, 0.05), transparent 55%),
+    radial-gradient(800px 500px at 100% 0%, rgba(0, 245, 255, 0.04), transparent 55%);
+}
+
+.dark .app-shell {
+  background: linear-gradient(135deg, #0B1F3A 0%, #1C1F26 50%, #0B1F3A 100%);
+  position: relative;
+}
+
+.dark .app-shell::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(900px 500px at 0% 0%, rgba(0, 200, 150, 0.08), transparent 55%),
+    radial-gradient(800px 500px at 100% 0%, rgba(0, 245, 255, 0.06), transparent 55%);
+  pointer-events: none;
+}
+
+/* Gradient backgrounds */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #00C896 0%, #00785A 100%);
+}
+
+.bg-gradient-secondary {
+  background: linear-gradient(135deg, #00F5FF 0%, #00C896 100%);
+}
+
+.bg-gradient-success {
+  background: linear-gradient(135deg, #00C896 0%, #00A078 100%);
+}
+
+.bg-gradient-cyber {
+  background: linear-gradient(135deg, #0B1F3A 0%, #1C1F26 50%, #0B1F3A 100%);
+}
+
+/* Smooth transitions */
+* {
+  @apply transition-colors duration-200;
+}
+
+button, a {
+  @apply transition-all duration-200;
+}
