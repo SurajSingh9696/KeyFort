@@ -34,31 +34,20 @@ export default function Home() {
     setMounted(true);
   }, []);
 
+  // Redirect authenticated users to dashboard
   useEffect(() => {
-    if (status === "authenticated" && session) {
-      router.push("/dashboard");
+    if (status === "authenticated") {
+      router.replace("/dashboard");
     }
-  }, [status, session, router]);
+  }, [status, router]);
 
-  // Only show loading during initial auth check
+  // Show loading only during initial auth check
   if (status === "loading") {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-pulse flex flex-col items-center gap-4">
           <Lock className="w-12 h-12 text-emerald-500" />
           <p className="text-muted-foreground">Loading...</p>
-        </div>
-      </div>
-    );
-  }
-
-  // If authenticated, redirect (but show content while redirecting)
-  if (status === "authenticated") {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-pulse flex flex-col items-center gap-4">
-          <Lock className="w-12 h-12 text-emerald-500" />
-          <p className="text-muted-foreground">Redirecting to dashboard...</p>
         </div>
       </div>
     );

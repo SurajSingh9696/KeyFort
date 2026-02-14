@@ -43,10 +43,11 @@ export default function LoginPage() {
       const result = await signIn("credentials", {
         email: data.email,
         password: data.password,
-        redirect: false,
+        redirect: true,
         callbackUrl: "/dashboard",
       });
 
+      // If redirect is false and there's an error
       if (result?.error) {
         toast({
           title: "Error",
@@ -54,13 +55,6 @@ export default function LoginPage() {
           variant: "destructive",
         });
         setIsLoading(false);
-      } else if (result?.ok) {
-        toast({
-          title: "Success",
-          description: "Logged in successfully",
-        });
-        // Force redirect to dashboard
-        window.location.href = "/dashboard";
       }
     } catch (error) {
       toast({

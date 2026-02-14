@@ -1,12 +1,9 @@
 import { NextAuthOptions } from "next-auth";
-import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import CredentialsProvider from "next-auth/providers/credentials";
-import clientPromise, { getCollection, ObjectId } from "@/lib/mongodb";
+import { getCollection } from "@/lib/mongodb";
 import bcrypt from "bcryptjs";
-import type { Adapter } from "next-auth/adapters";
 
 export const authOptions: NextAuthOptions = {
-  adapter: MongoDBAdapter(clientPromise, { databaseName: "password_vault" }) as Adapter,
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -91,4 +88,6 @@ export const authOptions: NextAuthOptions = {
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   secret: process.env.NEXTAUTH_SECRET,
+  debug: process.env.NODE_ENV === "development",
+  useSecureCookies: process.env.NODE_ENV === "production",
 };

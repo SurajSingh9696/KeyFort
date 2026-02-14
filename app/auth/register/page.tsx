@@ -80,26 +80,12 @@ export default function RegisterPage() {
       });
 
       // Auto sign in after registration
-      const result = await signIn("credentials", {
+      await signIn("credentials", {
         email: data.email,
         password: data.password,
-        redirect: false,
+        redirect: true,
+        callbackUrl: "/dashboard",
       });
-
-      if (result?.error) {
-        toast({
-          title: "Error",
-          description: "Account created, but sign-in failed",
-          variant: "destructive",
-        });
-        setIsLoading(false);
-        return;
-      }
-
-      if (result?.ok) {
-        // Force redirect to dashboard
-        window.location.href = "/dashboard";
-      }
     } catch (error) {
       toast({
         title: "Error",

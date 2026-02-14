@@ -7,7 +7,6 @@ A production-ready, secure Password Vault web application built with Next.js 14,
 ### Core Functionality
 - ✅ **Secure Authentication**
   - Email/Password authentication with bcrypt hashing
-  - Google OAuth integration
   - JWT-based session management
   - Protected routes with middleware
 
@@ -84,7 +83,6 @@ A production-ready, secure Password Vault web application built with Next.js 14,
 ### Prerequisites
 - Node.js 18+ installed
 - MongoDB database (local or MongoDB Atlas)
-- Google OAuth credentials (optional for OAuth login)
 
 ### 1. Clone the Repository
 ```bash
@@ -106,15 +104,11 @@ DATABASE_URL="mongodb://localhost:27017/password_vault"
 # For MongoDB Atlas (cloud):
 # DATABASE_URL="mongodb+srv://username:password@cluster.mongodb.net/password_vault?retryWrites=true&w=majority"
 
-# NextAuth
+# NextAuth (REQUIRED)
 NEXTAUTH_SECRET="your-super-secret-key-minimum-32-characters-long"
 NEXTAUTH_URL="http://localhost:3000"
 
-# Google OAuth (Optional)
-GOOGLE_CLIENT_ID="your-google-client-id"
-GOOGLE_CLIENT_SECRET="your-google-client-secret"
-
-# Encryption
+# Encryption (REQUIRED - must be exactly 32 characters)
 ENCRYPTION_KEY="your-32-character-encryption-key"
 
 # App
@@ -277,10 +271,46 @@ DATABASE_URL="postgresql://user:password@host:port/database?schema=public"
 ## 🚀 Deployment
 
 ### Vercel (Recommended)
-1. Push code to GitHub
-2. Import project in Vercel
-3. Add environment variables
-4. Deploy
+
+#### 1. Prepare MongoDB Atlas
+- Create a free [MongoDB Atlas](https://www.mongodb.com/atlas) account
+- Create a cluster and get your connection string
+- Format: `mongodb+srv://username:password@cluster.mongodb.net/password_vault?retryWrites=true&w=majority`
+
+#### 2. Deploy to Vercel
+1. Push your code to GitHub
+2. Go to [Vercel](https://vercel.com) and import your repository
+3. Configure the project:
+   - Framework Preset: **Next.js**
+   - Root Directory: `./`
+   - Build Command: `npm run build` (default)
+   - Output Directory: `.next` (default)
+
+#### 3. Add Environment Variables in Vercel
+Go to **Settings → Environment Variables** and add:
+
+```env
+DATABASE_URL=mongodb+srv://username:password@cluster.mongodb.net/password_vault?retryWrites=true&w=majority
+NEXTAUTH_SECRET=your-generated-secret-key
+ENCRYPTION_KEY=your-32-character-encryption-key
+NODE_ENV=production
+```
+
+**Important Notes:**
+- `NEXTAUTH_SECRET`: Generate with `openssl rand -base64 32` (REQUIRED)
+- `NEXTAUTH_URL`: Automatically set by Vercel, do NOT add manually
+- `ENCRYPTION_KEY`: Must be exactly 32 characters (REQUIRED)
+- `DATABASE_URL`: Must use MongoDB Atlas (REQUIRED)
+
+#### 4. Deploy
+- Click **Deploy** and wait for the build to complete
+- Your app will be available at `https://your-app.vercel.app`
+
+#### Troubleshooting Vercel Deployment
+- **Can't access home page**: Clear browser cookies and try again
+- **Login not working**: Verify `NEXTAUTH_SECRET` is set in environment variables
+- **Database errors**: Check MongoDB Atlas IP whitelist (allow all: `0.0.0.0/0`)
+- **Redirect loops**: Ensure you're accessing via HTTPS on Vercel
 
 ### Manual Deployment
 ```bash
