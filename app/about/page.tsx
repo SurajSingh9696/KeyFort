@@ -81,7 +81,7 @@ export default function AboutPage() {
               About <span className="text-emerald-500">KeyFort</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
-              We're on a mission to make password security simple, accessible, and trustworthy for everyone.
+              We&apos;re on a mission to make password security simple, accessible, and trustworthy for everyone.
             </p>
           </motion.div>
         </div>
@@ -99,11 +99,11 @@ export default function AboutPage() {
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Mission</h2>
               <p className="text-lg text-muted-foreground mb-6">
-                In today's digital world, managing passwords has become increasingly complex. 
+                In today&apos;s digital world, managing passwords has become increasingly complex. 
                 We believe everyone deserves access to bank-level security without the complexity.
               </p>
               <p className="text-lg text-muted-foreground">
-                KeyFort was built to provide enterprise-grade password management that's simple 
+                KeyFort was built to provide enterprise-grade password management that&apos;s simple 
                 enough for everyone to use, yet powerful enough for the most demanding users.
               </p>
             </div>

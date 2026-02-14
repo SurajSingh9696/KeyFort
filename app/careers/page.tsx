@@ -184,9 +184,9 @@ export default function CareersPage() {
             viewport={{ once: true }}
             className="rounded-3xl bg-gradient-to-br from-navy-700 via-navy-600 to-charcoal-700 p-12 text-white shadow-2xl border border-cyan-500/30"
           >
-            <h2 className="text-4xl font-bold mb-4">Don't See the Right Role?</h2>
+            <h2 className="text-4xl font-bold mb-4">Don&apos;t See the Right Role?</h2>
             <p className="text-xl mb-8 opacity-90">
-              Send us your resume and we'll keep you in mind for future opportunities
+              Send us your resume and we&apos;ll keep you in mind for future opportunities
             </p>
             <Button size="lg" className="bg-white text-navy-600 hover:bg-gray-100">
               Send Your Resume
