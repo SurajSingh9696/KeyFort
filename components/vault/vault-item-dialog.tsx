@@ -75,6 +75,19 @@ export default function VaultItemDialog({
 
   const isFavorite = watch("isFavorite");
 
+  const fetchCategories = useCallback(async () => {
+    try {
+      const data = await fetchJson<any[]>("/api/categories");
+      setCategories(data);
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: error instanceof Error ? error.message : "Failed to load categories",
+        variant: "destructive",
+      });
+    }
+  }, [toast]);
+
   useEffect(() => {
     fetchCategories();
   }, [fetchCategories]);
@@ -102,19 +115,6 @@ export default function VaultItemDialog({
       });
     }
   }, [item, reset]);
-
-  const fetchCategories = useCallback(async () => {
-    try {
-      const data = await fetchJson<any[]>("/api/categories");
-      setCategories(data);
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: error instanceof Error ? error.message : "Failed to load categories",
-        variant: "destructive",
-      });
-    }
-  }, [toast]);
 
   const onSubmit = async (data: VaultItemFormData) => {
     try {
