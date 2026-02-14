@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion } from "framer-motion";
-import { Eye, EyeOff, Lock, Mail, User, Chrome } from "lucide-react";
+import { Eye, EyeOff, Lock, Mail, User, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -92,10 +92,14 @@ export default function RegisterPage() {
           description: "Account created, but sign-in failed",
           variant: "destructive",
         });
+        setIsLoading(false);
         return;
       }
 
-      router.push("/dashboard");
+      if (result?.ok) {
+        // Force redirect to dashboard
+        window.location.href = "/dashboard";
+      }
     } catch (error) {
       toast({
         title: "Error",
@@ -103,20 +107,6 @@ export default function RegisterPage() {
         variant: "destructive",
       });
     } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleGoogleSignIn = async () => {
-    setIsLoading(true);
-    try {
-      await signIn("google", { callbackUrl: "/dashboard" });
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to sign in with Google",
-        variant: "destructive",
-      });
       setIsLoading(false);
     }
   };
@@ -139,10 +129,16 @@ export default function RegisterPage() {
       >
         <Card className="backdrop-blur-sm bg-card/95 border-border shadow-2xl">
           <CardHeader className="space-y-1">
-            <div className="flex items-center justify-center mb-4">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-primary flex items-center justify-center shadow-lg">
-                <Lock className="w-7 h-7 text-white" />
+            <div className="flex items-center justify-between mb-4">
+              <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Home className="w-5 h-5" />
+              </Link>
+              <div className="flex items-center justify-center flex-1">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-primary flex items-center justify-center shadow-lg">
+                  <Lock className="w-7 h-7 text-white" />
+                </div>
               </div>
+              <div className="w-5" />
             </div>
             <CardTitle className="text-3xl font-bold text-center">Create Account</CardTitle>
             <CardDescription className="text-center text-base">
@@ -257,26 +253,6 @@ export default function RegisterPage() {
                 {isLoading ? "Creating account..." : "Create Account"}
               </Button>
             </form>
-
-            <div className="relative my-6">
-              <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t border-border" />
-              </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-card px-2 text-muted-foreground">Or continue with</span>
-              </div>
-            </div>
-
-            <Button
-              type="button"
-              variant="outline"
-              className="w-full h-11 border-2 hover:border-emerald-500/50 hover:bg-emerald-500/5"
-              onClick={handleGoogleSignIn}
-              disabled={isLoading}
-            >
-              <Chrome className="w-4 h-4 mr-2" />
-              Google
-            </Button>
 
             <p className="text-center text-sm text-muted-foreground mt-6">
               Already have an account?{" "}

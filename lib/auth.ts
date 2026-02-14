@@ -1,7 +1,6 @@
 import { NextAuthOptions } from "next-auth";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import CredentialsProvider from "next-auth/providers/credentials";
-import GoogleProvider from "next-auth/providers/google";
 import clientPromise, { getCollection, ObjectId } from "@/lib/mongodb";
 import bcrypt from "bcryptjs";
 import type { Adapter } from "next-auth/adapters";
@@ -54,41 +53,8 @@ export const authOptions: NextAuthOptions = {
         };
       },
     }),
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
-      authorization: {
-        params: {
-          prompt: "consent",
-          access_type: "offline",
-          response_type: "code",
-        },
-      },
-    }),
   ],
   callbacks: {
-    async signIn({ user, account }) {
-      if (account?.provider === "google") {
-        // Log Google OAuth login
-        try {
-          const usersCollection = await getCollection("users");
-          const dbUser = await usersCollection.findOne({ email: user.email! });
-
-          if (dbUser) {
-            const activityCollection = await getCollection("activity_logs");
-            await activityCollection.insertOne({
-              userId: dbUser._id,
-              action: "LOGIN",
-              description: "User logged in with Google OAuth",
-              createdAt: new Date(),
-            });
-          }
-        } catch (error) {
-          console.error("Failed to log Google login:", error);
-        }
-      }
-      return true;
-    },
     async session({ session, token }) {
       if (token) {
         session.user.id = token.id as string;

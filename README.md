@@ -282,12 +282,6 @@ DATABASE_URL="postgresql://user:password@host:port/database?schema=public"
 3. Add environment variables
 4. Deploy
 
-### Docker
-```bash
-docker build -t password-vault .
-docker run -p 3000:3000 password-vault
-```
-
 ### Manual Deployment
 ```bash
 npm run build
