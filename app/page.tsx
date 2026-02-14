@@ -35,17 +35,30 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (status === "authenticated") {
+    if (status === "authenticated" && session) {
       router.push("/dashboard");
     }
-  }, [status, router]);
+  }, [status, session, router]);
 
-  if (status === "loading" || status === "authenticated") {
+  // Only show loading during initial auth check
+  if (status === "loading") {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-pulse flex flex-col items-center gap-4">
           <Lock className="w-12 h-12 text-emerald-500" />
           <p className="text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // If authenticated, redirect (but show content while redirecting)
+  if (status === "authenticated") {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-pulse flex flex-col items-center gap-4">
+          <Lock className="w-12 h-12 text-emerald-500" />
+          <p className="text-muted-foreground">Redirecting to dashboard...</p>
         </div>
       </div>
     );
