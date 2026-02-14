@@ -449,17 +449,17 @@ export default function Home() {
               <h3 className="font-semibold mb-4">Company</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>
-                  <Link href="#" className="hover:text-foreground transition-colors">
+                  <Link href="/about" className="hover:text-foreground transition-colors">
                     About
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-foreground transition-colors">
+                  <Link href="/blog" className="hover:text-foreground transition-colors">
                     Blog
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-foreground transition-colors">
+                  <Link href="/careers" className="hover:text-foreground transition-colors">
                     Careers
                   </Link>
                 </li>
@@ -469,17 +469,17 @@ export default function Home() {
               <h3 className="font-semibold mb-4">Legal</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>
-                  <Link href="#" className="hover:text-foreground transition-colors">
+                  <Link href="/privacy" className="hover:text-foreground transition-colors">
                     Privacy
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-foreground transition-colors">
+                  <Link href="/terms" className="hover:text-foreground transition-colors">
                     Terms
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-foreground transition-colors">
+                  <Link href="/security" className="hover:text-foreground transition-colors">
                     Security
                   </Link>
                 </li>
@@ -489,7 +489,12 @@ export default function Home() {
           <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between text-sm text-muted-foreground">
             <p>© 2026 KeyFort. All rights reserved.</p>
             <div className="flex items-center space-x-6 mt-4 md:mt-0">
-              <Link href="#" className="hover:text-foreground transition-colors">
+              <Link 
+                href="https://github.com/SurajSingh9696" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-foreground transition-colors"
+              >
                 <Github className="w-5 h-5" />
               </Link>
             </div>

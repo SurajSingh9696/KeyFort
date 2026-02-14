@@ -43,11 +43,9 @@ export default function LoginPage() {
       const result = await signIn("credentials", {
         email: data.email,
         password: data.password,
-        redirect: true,
-        callbackUrl: "/dashboard",
+        redirect: false,
       });
 
-      // If redirect is false and there's an error
       if (result?.error) {
         toast({
           title: "Error",
@@ -55,6 +53,14 @@ export default function LoginPage() {
           variant: "destructive",
         });
         setIsLoading(false);
+      } else if (result?.ok) {
+        toast({
+          title: "Success",
+          description: "Logged in successfully",
+        });
+        // Use router.push for client-side navigation
+        router.push("/dashboard");
+        router.refresh();
       }
     } catch (error) {
       toast({

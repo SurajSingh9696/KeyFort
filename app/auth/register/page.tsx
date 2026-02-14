@@ -80,12 +80,26 @@ export default function RegisterPage() {
       });
 
       // Auto sign in after registration
-      await signIn("credentials", {
+      const signInResult = await signIn("credentials", {
         email: data.email,
         password: data.password,
-        redirect: true,
-        callbackUrl: "/dashboard",
+        redirect: false,
       });
+
+      if (signInResult?.error) {
+        toast({
+          title: "Warning",
+          description: "Account created. Please login manually.",
+        });
+        router.push("/auth/login");
+      } else if (signInResult?.ok) {
+        toast({
+          title: "Success",
+          description: "Account created successfully",
+        });
+        router.push("/dashboard");
+        router.refresh();
+      }
     } catch (error) {
       toast({
         title: "Error",
