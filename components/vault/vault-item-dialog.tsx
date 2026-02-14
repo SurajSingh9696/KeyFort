@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -77,7 +77,7 @@ export default function VaultItemDialog({
 
   useEffect(() => {
     fetchCategories();
-  }, []);
+  }, [fetchCategories]);
 
   useEffect(() => {
     if (item) {
@@ -103,7 +103,7 @@ export default function VaultItemDialog({
     }
   }, [item, reset]);
 
-  const fetchCategories = async () => {
+  const fetchCategories = useCallback(async () => {
     try {
       const data = await fetchJson<any[]>("/api/categories");
       setCategories(data);
@@ -114,7 +114,7 @@ export default function VaultItemDialog({
         variant: "destructive",
       });
     }
-  };
+  }, [toast]);
 
   const onSubmit = async (data: VaultItemFormData) => {
     try {

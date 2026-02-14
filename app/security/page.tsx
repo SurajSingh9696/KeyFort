@@ -90,7 +90,7 @@ export default function SecurityPage() {
               Security <span className="text-emerald-500">First</span>
             </h1>
             <p className="text-xl text-muted-foreground">
-              Your trust is our responsibility. Here's how we protect your data.
+              Your trust is our responsibility. Here&apos;s how we protect your data.
             </p>
           </motion.div>
         </div>

@@ -83,7 +83,7 @@ export default function PrivacyPage() {
               Privacy <span className="text-emerald-500">Policy</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-4">
-              Your privacy is our priority. Here's how we protect your data.
+              Your privacy is our priority. Here&apos;s how we protect your data.
             </p>
             <p className="text-sm text-muted-foreground">
               Last updated: February 14, 2026
